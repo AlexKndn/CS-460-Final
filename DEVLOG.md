@@ -16,12 +16,9 @@ My initial plan is to find a way to find the cheapest fuel route through this du
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [05/12/2026]: Follow up
 
-> Required. At least one entry must describe a bug, wrong assumption, or design change
-> you encountered. Describe what went wrong and how you resolved it.
-
-_Your entry here._
+First approach will not work. Instructions literally ask why greedy fails. I need a way to go through all nodes and get best route. I have decided to change my plan. I will implement dijkstra. This will give me the best and cheapest route from source node to end node while collecting relics. I will also use backtracking to explore all possible ways to solve. (lecture notes 04/28/2026) This will be the best option as of right now.
 
 ---
 
