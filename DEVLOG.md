@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** __Alex Kondan_________________________
+**Student ID:** ____817311203_______________________
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -10,12 +10,9 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [05/12/2026]: Initial Plan
 
-> Required. Write this before writing any code. Describe your plan: what you will
-> implement first, what parts you expect to be difficult, and how you plan to test.
-
-_Your entry here._
+My initial plan is to find a way to find the cheapest fuel route through this dungeon. While meeting the requirements. We will have to collect relics while starting at node S and ending at node T while having the lowest cost. We will need the best possible route. My plan is implement a sorting algorithm that will find the best path. We are using non negative node weight. Therfore my plan is to use greedy optimal sort. I expect implementing this will be quite time consuming and extensive. To test this i will use cases provdied in starter file.
 
 ---
 
