@@ -13,8 +13,6 @@
 
 ## Part 1: Problem Analysis
 
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
   A single shortest-path run will not accommadate all the possible routes to save the most fuel and visit all the relics then finding the finish line
@@ -31,12 +29,12 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
+
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| node S | we need cost from S to each relic|
+| Relics | we need cost from each relic to other relics to T |
 
 ### Part 2b: Distance Storage
 
