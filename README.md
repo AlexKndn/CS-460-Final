@@ -70,29 +70,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  once finalized, the node's distance is the true shortest path from the source node and no shorter paths will be found
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  nodes that are not finalized the current distance is the shortest path so far with finalized nodes, this may still be updated with a shorter path
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  It holds true because the source node distance is 0 which is true since its costs nothing to get to itself and all other unexplored nodes are set to infinity
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  Because when the weights are non negative there will be no other path that can make it a cheaper cost
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  It guarantees that the connected nodes will be finalized and the cheapest path cost will be found from the source
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+By having the correct distances the route planner is able to find the most optimal path
 
 ---
 
