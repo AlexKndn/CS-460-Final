@@ -307,3 +307,14 @@ def _run_tests():
 
 if __name__ == "__main__":
     _run_tests()
+   # test run_dijkstra
+    # graph_test = {
+    #     'S': [('B', 1), ('C', 2)],
+    #     'B': [('T', 1)],
+    #     'C': [('T', 1)],
+    #     'T': []
+    # }
+    # print(run_dijkstra(graph_test, 'S'))
+    # print(select_sources('S', ['B', 'C'], 'T'))
+    # print(precompute_distances(graph_test, 'S', ['B', 'C'], 'T'))
+
