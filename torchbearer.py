@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: __Alex Kondan_________________________
+Student ID:   ____817311203_______________________
 
 INSTRUCTIONS
 ------------
@@ -34,8 +34,12 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
-
+    return (
+        "A single shortest-path run will not accommodate all the possible routes "
+        "to save the most fuel and visit all the relics then finding the finish line.\n"
+        "What path we should take to visit all the relics.\n"
+        "So we can try them all and find the best route to save the minimum fuel."
+    )
 
 # =============================================================================
 # PART 2
