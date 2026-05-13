@@ -38,24 +38,24 @@
 
 ### Part 2b: Distance Storage
 
-> Fill in the table. No prose required.
+
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | nested hash map|
+| What the keys represent | source node(outer), destination node (inner)|
+| What the values represent |minimum fuel cost |
+| Lookup time complexity | O(1)|
+| Why O(1) lookup is possible |because hash map can look up constant time key |
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+
+- **Number of Dijkstra runs:** k+1 (one from source, one from each relic to end)
+- **Cost per run:** O(m log n)
+- **Total complexity:** O((k+1) x m log n)
+- **Justification (one line):** dijkstra runs one per source node, while visiting each node with priorty queue
 
 ---
 
