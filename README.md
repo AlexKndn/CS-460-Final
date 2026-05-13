@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** ___Alex Kondan________________________
+**Student ID:** ______817311203_____________________
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -17,13 +17,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  A single shortest-path run will not accommadate all the possible routes to save the most fuel and visit all the relics then finding the finish line
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  What path we should take to visit all the relics
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  So we can try them all and find the best route to save the minimum fuel 
 
 ---
 
