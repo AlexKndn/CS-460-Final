@@ -126,7 +126,7 @@ By having the correct distances the route planner is able to find the most optim
 |---|---|---|---|
 | Current location |current_loc |node   |current node of torchbearer |
 | Relics already collected |relics_collected  |set | set of relics already collected |
-| Fuel cost so far |fuel_cost |float |total amount of fuel spent so far |
+| Fuel cost so far |cost_so_far |float |total amount of fuel spent so far |
 
 ### Part 5b: Data Structure for Visited Relics
 
