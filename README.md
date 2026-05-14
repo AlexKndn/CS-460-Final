@@ -168,7 +168,7 @@ By having the correct distances the route planner is able to find the most optim
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- Pruning is safe because if the current cost is more than the best so far the branch will be cut allowing for a optimal solution
 
 ---
 
@@ -176,4 +176,5 @@ By having the correct distances the route planner is able to find the most optim
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- Lecture notes Professor Manju Maralidharan Priya, CS 460 Spring 2026
+Skiena, Steven S. The Algorithm Design Manual, 2nd edition. Springer, 2008. (Chapter 6 and 7)
