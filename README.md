@@ -100,20 +100,18 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Why Greedy Fails
 
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+
+- **The failure mode:** Greedy only looks at the next cheapest choices and committs where as we want one that will look globally for the cheapest cost path as there could be a better overall route 
+- **Counter-example setup:** S can go to R1(cost 1) and R2(cost 25). R1 can go to R2(cost 50) and T(cost 1). R2 can go to R1(cost 1) and T(cost 1).
+- **What greedy picks:** S to R1 (cost 1), R1 to R2 (cost 50) and R2 to T (cost 1) for total of 52.
+- **What optimal picks:** S to R2 (cost 25), R2 to R1 (cost 1) and R1 to T (cost 1) for total of 27.
+- **Why greedy loses:** greedy loses because it picks the closest cheapest cost edge which forces it to take R1 to R2 which costs 50 rather than S to R2 which only costs it 25.
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore all the possible orders of nodes and relics to find the most optimal path
 
 ---
 
@@ -126,9 +124,9 @@ By having the correct distances the route planner is able to find the most optim
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location |current_loc |node   |current node of torchbearer |
+| Relics already collected |relics_collected  |set | set of relics already collected |
+| Fuel cost so far |fuel_cost |float |total amount of fuel spent so far |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -136,18 +134,18 @@ By having the correct distances the route planner is able to find the most optim
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen |set |
+| Operation: check if relic already collected | Time complexity: O(1)|
+| Operation: mark a relic as collected | Time complexity: O(1) |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1)|
+| Why this structure fits |set stores collection of nodes while having good time complexity O(1) for operations |
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** k!
+- **Why:** because there are k relics and we need to try all orders, k x (k-1) x (k-2)...
 
 ---
 
