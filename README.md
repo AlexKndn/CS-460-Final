@@ -130,7 +130,6 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 5b: Data Structure for Visited Relics
 
-> Fill in the table.
 
 | Property | Your answer |
 |---|---|
@@ -142,7 +141,6 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
 
 - **Worst-case number of orders considered:** k!
 - **Why:** because there are k relics and we need to try all orders, k x (k-1) x (k-2)...
@@ -153,19 +151,18 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** We track what is the total best so far in terms of route (edge weights)
+- **When it is used:** We will compare the current total edge weight with our total best edge weight with each step
+- **What it allows the algorithm to skip:** A edge weight that exceedes in cost versus of what we currently have as total best so far
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** the cost, leftover relics and shortest distances between nodes
+- **What the lower bound accounts for:** the leftover minimum cost
+- **Why it never overestimates:** because the cost can only be greater than or equal to the shortest path
 
 ### Part 6c: Pruning Correctness
 
