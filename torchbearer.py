@@ -138,7 +138,19 @@ def dijkstra_invariant_check():
 
     TODO
     """
-    return "TODO"
+    return (
+        "Once finalized, the node's distance is the true shortest path "
+        "from the source node and no shorter paths will be found.\n"
+        "Nodes that are not finalized the current distance is the shortest path so far with finalized "
+        "nodes, this may still be updated with a shorter path.\n"
+        "It holds true because the source node distance is 0 which is true since it "
+        "costs nothing to get to itself and all other unexplored nodes are set to infinity.\n"
+        "Because when the weights are non negative there will be no other path that can "
+        "make it a cheaper cost.\n"
+        "It guarantees that the connected nodes will be finalized and the cheapest path "
+        "cost will be found from the source.\n"
+        "By having the correct distances the route planner is able to find the most optimal path."
+    )
 
 
 # =============================================================================
@@ -155,7 +167,17 @@ def explain_search():
 
     TODO
     """
-    return "TODO"
+    return (
+        "Greedy only looks at the next cheapest choices and commits whereas we want one that will "
+        "look globally for the cheapest cost path as there could be a better overall route.\n"
+        "Counter-example: S can go to R1(cost 1) and R2(cost 25). R1 can go to R2(cost 50) and "
+        "T(cost 1). R2 can go to R1(cost 1) and T(cost 1).\n"
+        "Greedy picks: S to R1 (cost 1), R1 to R2 (cost 50) and R2 to T (cost 1) for total of 52.\n"
+        "Optimal picks: S to R2 (cost 25), R2 to R1 (cost 1) and R1 to T (cost 1) for total of 27.\n"
+        "Greedy loses because it picks the locally cheapest edge which forces it to take R1 to R2 "
+        "which costs 50 rather than S to R2 which only costs 25.\n"
+        "The algorithm must explore all possible orders of nodes and relics to find the most optimal path."
+    )
 
 
 # =============================================================================
