@@ -80,23 +80,23 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    dist = {node: float('inf') for node in graph} #intialize distances with infinity
-    dist[source] = 0
+    dist = {node: float('inf') for node in graph} #creates dictionary with every node set to infinity
+    dist[source] = 0 #source node costs 0
 
-    pq = [(0, source)] #initalize priorty queue with cost, node
+    pq = [(0, source)] #initalize priorty queue with source node at cost 0, Heap always pops cheapest item first
 
     while pq:
-        cost, node = heapq.heappop(pq)
+        cost, node = heapq.heappop(pq) #keep goes while nodes to process. Pops node with cheapest known cost
 
-        if cost > dist[node]: #skip if found cheaper path
+        if cost > dist[node]: # if a cheaper path to this node is fund skip it it's outdated
             continue
 
-        for neighbor, weight in graph[node]: #relax edges
+        for neighbor, weight in graph[node]: # look at every neighbor of current node and calculate cost to reach it through the current node
             new_cost = cost + weight
-            if new_cost < dist[neighbor]:
+            if new_cost < dist[neighbor]: #if found a cheaper path to the neighbor update it  and add it to the queue to explore later
                 dist[neighbor] = new_cost
                 heapq.heappush(pq, (new_cost, neighbor))
-    return dist
+    return dist # return dictionary of minimum costs from source to every node
 
 
 
@@ -118,10 +118,10 @@ def precompute_distances(graph, spawn, relics, exit_node):
     TODO
     """
     dist_table = {} #store results
-    sources = select_sources(spawn, relics, exit_node) #get source nodes
-    for source in sources: # run dijkstra from each source
+    sources = select_sources(spawn, relics, exit_node) #get list of source nodes (spawn + relics)
+    for source in sources: # run dijkstra from each source node S and store results. dist_table['S'] gives you all distances from S
         dist_table[source] = run_dijkstra(graph, source)
-    return dist_table
+    return dist_table # returns dictionary of all distances
 
 
 # =============================================================================
@@ -204,7 +204,9 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    best = [float('inf'), []] # container storing the best cost solution found and order found so far. best[0] is the minimum cost, best [1] is the optimal relic order. Starts at infity since nothing found yet.
+    _explore(dist_table, spawn, relics, [], 0.0, exit_node, best) # start recursive search from explore from spawn with no relics vistited or fuel spent
+    return best[0], best[1] # returns best cost and best relic order found
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -236,7 +238,22 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    if cost_so_far >= best[0]: #Pruning is safe because all the edge weights are not negative so no future path from this branch can reduce the cost_so_far below best[0]. We will only prune when current cost exceeds best, therefore optimal solution is not discarded
+        return #pruning if the current cost already eceeds the best found, stop exploring this branch
+    
+    if not relics_remaining: # Base case, all relics collected. Add the cost to reach the exit
+        final_cost = cost_so_far + dist_table[current_loc][exit_node]
+        if final_cost < best[0]: # if this complete route is cheaper than the best found so far, update best. [:] makes a copy of the list
+            best[0] = final_cost
+            best[1] = relics_visited_order[:]
+        return
+
+    for relic in relics_remaining: #tries each remaining relic. Looks up precomputed cost to reach it
+        travel_cost = dist_table[current_loc][relic] #cost to reach relic
+        new_remaining = [r for r in relics_remaining if r != relic] # creates a list of remaining relics with the current one removed
+        relics_visited_order.append(relic) #marks the relic visited by adding it to the order list
+        _explore(dist_table, relic, new_remaining, relics_visited_order, cost_so_far + travel_cost, exit_node, best) #recursively explore from this relic with updated cost and remaining relics
+        relics_visited_order.pop() #backtrack , undo the choice by removing the last relic from the order list
 
 
 # =============================================================================
@@ -260,7 +277,8 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    dist_table = precompute_distances(graph, spawn, relics, exit_node) #run dijkstra from all source nodes to precompute all the shortest distances
+    return find_optimal_route(dist_table, spawn, relics, exit_node) # uses the precomputed distances to find the optimal relic collection order
 
 
 # =============================================================================
@@ -329,14 +347,5 @@ def _run_tests():
 
 if __name__ == "__main__":
     _run_tests()
-   # test run_dijkstra
-    # graph_test = {
-    #     'S': [('B', 1), ('C', 2)],
-    #     'B': [('T', 1)],
-    #     'C': [('T', 1)],
-    #     'T': []
-    # }
-    # print(run_dijkstra(graph_test, 'S'))
-    # print(select_sources('S', ['B', 'C'], 'T'))
-    # print(precompute_distances(graph_test, 'S', ['B', 'C'], 'T'))
+
 
