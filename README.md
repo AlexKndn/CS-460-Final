@@ -4,10 +4,7 @@
 **Student ID:** ______817311203_____________________
 **Course:** CS 460 – Algorithms | Spring 2026
 
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
+
 
 ---
 
@@ -15,13 +12,13 @@
 
 
 - **Why a single shortest-path run from S is not enough:**
-  A single shortest-path run will not accommadate all the possible routes to save the most fuel and visit all the relics then finding the finish line
+  It will not accommadate all the possible routes to save the most fuel, visit all the relics, then reach the finish line because the shortest distances taken in account are from the local perspective of the current node.
 
 - **What decision remains after all inter-location costs are known:**
-  What path we should take to visit all the relics
+  What is the least cost path we should take to visit all the relics.
 
 - **Why this requires a search over orders (one sentence):**
-  So we can try them all and find the best route to save the minimum fuel 
+  So we can try them all and find the best route to use the minimum amount of fuel.
 
 ---
 
@@ -44,7 +41,7 @@
 |---|---|
 | Data structure name | nested hash map|
 | What the keys represent | source node(outer), destination node (inner)|
-| What the values represent |minimum fuel cost |
+| What the values represent | fuel cost to destination node |
 | Lookup time complexity | O(1)|
 | Why O(1) lookup is possible |because hash map can look up constant time key |
 
@@ -54,20 +51,18 @@
 
 - **Number of Dijkstra runs:** k+1 (one from source, one from each relic to end)
 - **Cost per run:** O(m log n)
-- **Total complexity:** O((k+1) x m log n)
-- **Justification (one line):** dijkstra runs one per source node, while visiting each node with priorty queue
+- **Total complexity:** O((k+1) x m log n) 
+- **Justification (one line):** dijkstra runs once per source node, while visiting each node with priorty queue
 
 ---
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
+
 
 ### Part 3a: What the Invariant Means
 
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
+
 
 - **For nodes already finalized (in S):**
   once finalized, the node's distance is the true shortest path from the source node and no shorter paths will be found
@@ -77,7 +72,7 @@
 
 ### Part 3b: Why Each Phase Holds
 
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
+
 
 - **Initialization : why the invariant holds before iteration 1:**
   It holds true because the source node distance is 0 which is true since its costs nothing to get to itself and all other unexplored nodes are set to infinity
@@ -90,9 +85,9 @@
 
 ### Part 3c: Why This Matters for the Route Planner
 
-> One sentence connecting correct distances to correct routing decisions.
 
-By having the correct distances the route planner is able to find the most optimal path
+
+By having the correct distances the route planner is able to find the most optimal path.
 
 ---
 
@@ -102,7 +97,7 @@ By having the correct distances the route planner is able to find the most optim
 
 
 
-- **The failure mode:** Greedy only looks at the next cheapest choices and committs where as we want one that will look globally for the cheapest cost path as there could be a better overall route 
+- **The failure mode:** Greedy only looks at the next cheapest choices and committs. Whereas we want one that will look globally for the cheapest cost path as there could be a better overall route. 
 - **Counter-example setup:** S can go to R1(cost 1) and R2(cost 25). R1 can go to R2(cost 50) and T(cost 1). R2 can go to R1(cost 1) and T(cost 1).
 - **What greedy picks:** S to R1 (cost 1), R1 to R2 (cost 50) and R2 to T (cost 1) for total of 52.
 - **What optimal picks:** S to R2 (cost 25), R2 to R1 (cost 1) and R1 to T (cost 1) for total of 27.
@@ -111,7 +106,7 @@ By having the correct distances the route planner is able to find the most optim
 ### What the Algorithm Must Explore
 
 
-- The algorithm must explore all the possible orders of nodes and relics to find the most optimal path
+- The algorithm must explore all the possible orders of nodes and relics to find the most optimal path.
 
 ---
 
@@ -119,13 +114,12 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
+
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
 | Current location |current_loc |node   |current node of torchbearer |
-| Relics already collected |relics_collected  |set | set of relics already collected |
+| Relics already collected |relics_visited_order  |list | relics already collected in order|
 | Fuel cost so far |cost_so_far |float |total amount of fuel spent so far |
 
 ### Part 5b: Data Structure for Visited Relics
@@ -133,11 +127,11 @@ By having the correct distances the route planner is able to find the most optim
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen |set |
-| Operation: check if relic already collected | Time complexity: O(1)|
+| Data structure chosen |list |
+| Operation: check if relic already collected | Time complexity: O(n)|
 | Operation: mark a relic as collected | Time complexity: O(1) |
 | Operation: unmark a relic (backtrack) | Time complexity: O(1)|
-| Why this structure fits |set stores collection of nodes while having good time complexity O(1) for operations |
+| Why this structure fits |list will work for tracking visited relics is good for backtracking |
 
 ### Part 5c: Worst-Case Search Space
 
@@ -158,7 +152,6 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
 
 - **What information is available at the current state:** the cost, leftover relics and shortest distances between nodes
 - **What the lower bound accounts for:** the leftover minimum cost
@@ -166,7 +159,7 @@ By having the correct distances the route planner is able to find the most optim
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
+
 
 - Pruning is safe because if the current cost is more than the best so far the branch will be cut allowing for a optimal solution
 
@@ -174,7 +167,8 @@ By having the correct distances the route planner is able to find the most optim
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
+
 
 - Lecture notes Professor Manju Maralidharan Priya, CS 460 Spring 2026
-Skiena, Steven S. The Algorithm Design Manual, 2nd edition. Springer, 2008. (Chapter 6 and 7)
+- Skiena, Steven S. The Algorithm Design Manual, 2nd edition. Springer, 2008. (Chapter 6 and 7)
+- ByteQuest. "Dijkstra's Shortest Path Algorithm Visually Explained | How it Works | With Examples." Youtube. https://www.youtube.com/watch?v=CmIQ29cUGiE
